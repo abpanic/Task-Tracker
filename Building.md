@@ -8,7 +8,7 @@ I started by creating a new file in Visual Studio Code with the filename "Pomodo
 
 [Initial code]
 
-The initial code is just the scaffolding of the application, and it's okay not to have all the components functional in the first go. However, running the initial code in VSCode should launch the app, and that's precisely what happened.
+The initial code is just the scaffolding of the application, and it's okay not to have all the components functional in the first go. However, running the initial code in VSCode should launch the app, as we kick off and that's precisely what happened.
 
 ![screenshot 1]
 
