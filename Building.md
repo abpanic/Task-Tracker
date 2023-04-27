@@ -2,19 +2,97 @@ In this blog post, I'll be discussing the build process of a custom Pomodoro Tim
 
 ## The Build Process
 
+## Installing Pre-requisite
+* [Python](https://www.python.org/)
+* [Tkinter library](https://docs.python.org/3/library/tkinter.html)
+* [Pygame library](https://www.pygame.org/news)
+
 ### Visual Studio Code
 
-I started by creating a new file in Visual Studio Code with the filename "PomodoroTimer.py" and added an initial scaffolding to outline the main components of the application. The initial code looks like this:
+I started by creating a new file in Visual Studio Code with the filename "PomodoroTimer.py" and added an initial scaffolding to outline the main components of the application. The starter code looks like this:
+```
+import tkinter as tk
 
-[Initial code]
+class PomodoroTimer:
+    def __init__(self, master):
+        self.master = master
+        master.title("Pomodoro Timer")
 
-The initial code is just the scaffolding of the application, and it's okay not to have all the components functional in the first go. However, running the initial code in VSCode should launch the app, as we kick off and that's precisely what happened.
+        # Create timer label
+        self.timer_label = tk.Label(master, text="00:00", font=("Arial", 48))
+        self.timer_label.pack(pady=50)
+
+        # Create timer control buttons
+        self.start_button = tk.Button(master, text="Start", command=self.start_timer)
+        self.start_button.pack(side="left", padx=10)
+
+        self.pause_button = tk.Button(master, text="Pause", command=self.pause_timer, state="disabled")
+        self.pause_button.pack(side="left", padx=10)
+
+        self.stop_button = tk.Button(master, text="Stop", command=self.stop_timer, state="disabled")
+        self.stop_button.pack(side="left", padx=10)
+
+    def start_timer(self):
+        pass
+
+    def pause_timer(self):
+        pass
+
+    def stop_timer(self):
+        pass
+
+root = tk.Tk()
+app = PomodoroTimer(root)
+root.mainloop()
+
+```
+The starter code is just the scaffolding of the application, and it's okay not to have all the components functional in the first go. However, running the starter code in VSCode should launch the app, as we kick off and that's precisely what happened.
 
 ![screenshot 1]
 
-Next, I added the rest of the code components to ensure the application is functional and performs the tasks it's supposed to.
+Next, I added the rest of the code components to ensure the application is functional and performs the tasks it's supposed to. As you can see the start, pause and stop timer function was missing so was the timer and state of the app. We also added countdown and timer label
 
-[Added code]
+```
+import tkinter as tk	
+class PomodoroTimer:	
+    def __init__(self, master):	
+        ...//code here remains the same	
+        master.title("Pomodoro Timer")	
+        self.seconds_left = 25 * 60  # 25 minutes	
+        self.is_running = False	
+        ...//code here remains the same		
+    def countdown(self):	
+        if self.seconds_left > 0 and self.is_running:	
+            self.seconds_left -= 1	
+            self.update_timer_label()	
+            self.master.after(1000, self.countdown)  # Call this method again after 1000 ms (1 second)	
+    def update_timer_label(self):	
+        minutes, seconds = divmod(self.seconds_left, 60)	
+        self.timer_label.configure(text=f"{minutes:02d}:{seconds:02d}")	
+    def start_timer(self):	
+        if not self.is_running:	
+            self.is_running = True	
+            self.start_button.config(state="disabled")	
+            self.pause_button.config(state="normal")	
+            self.stop_button.config(state="normal")	
+            self.countdown()	
+    def pause_timer(self):	
+        if self.is_running:	
+            self.is_running = False	
+            self.start_button.config(state="normal")	
+            self.pause_button.config(state="disabled")	
+    def stop_timer(self):	
+        if self.is_running or self.seconds_left != 25 * 60:	
+            self.is_running = False	
+            self.seconds_left = 25 * 60	
+            self.update_timer_label()	
+            self.start_button.config(state="normal")	
+            self.pause_button.config(state="disabled")	
+            self.stop_button.config(state="disabled")	
+if __name__ == "__main__":	
+    root = tk.Tk()	
+    ...//code here remains the same	
+```
 
 Now, the application is coming up nicely, and we can run it from the terminal with `python3 PomodoroTimer.py`.
 
