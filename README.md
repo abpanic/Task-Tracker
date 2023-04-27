@@ -41,7 +41,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 # Step-by-step build guide:
 
-The Guide to creation of this entire project is [here](https://github.com/abpanic/PodomoroTimer/blob/main/Building.md)
+The Guide to creation of this entire project is [here](https://abpanic.github.io/PodomoroTimer/Building)
 
 Created an initial file for the project with the code: https://gist.github.com/abpanic/63b183c40ac29d95231a6d8babdeb64b
 
