@@ -38,11 +38,36 @@ I used the `pygame` library to add the alarm sound feature:
 To make the Python script executable with a double click on Ubuntu, I followed these steps:
 
 1. Add a shebang line to the script.
-2. Make the script executable.
-3. Associate the script with the Python interpreter.
-4. (Optional) Create a desktop shortcut.
+Open your Python script (PodomoroTimer.py) in a text editor and add the following line to the very top of the file:
+```
+#!/usr/bin/env python3
+```
+This line tells the operating system to use Python 3 to run the script.
+Save and close the file.
 
-(You can refer to the detailed steps provided in the original content)
+2. Make the script executable.
+Open a terminal window and navigate to the directory where the script is located. Then, run the following command:
+```
+chmod +x PodomoroTimer.py
+```
+This command grants the script executable permissions.
+
+3. Associate the script with the Python interpreter.
+To make sure your script opens with Python when double-clicked, you need to associate .py files with the Python interpreter. To do this, follow these steps:
+a. Right-click on the PodomoroTimer.py file and select "Properties" from the context menu.
+b. In the "Properties" window, navigate to the "Open With" tab.
+c. Find the "Python 3" interpreter in the list of applications. If you don't see it, click "Show other applications" and find it in the extended list.
+d. Select "Python 3" and click the "Set as default" button.
+Double click the script: Now you should be able to double-click the PodomoroTimer.py file to run the script.
+
+4. (Optional) Create a desktop shortcut.
+Right-click on your desktop and select "Create a new launcher here" or "Create Launcher" (the wording may differ depending on your Ubuntu version).
+In the "Create Launcher" window, fill in the details:
+a. Type: Select "Application" from the dropdown menu.
+b. Name: Enter a name for the shortcut, such as "Podomoro Timer".
+c. Command: Click the "Browse" button and navigate to the location of your PodomoroTimer.py file. Select the file and click "Open".
+d. (Optional) Icon: Click the icon placeholder to choose an icon for the shortcut.
+Click "OK" or "Create" to create the desktop shortcut.
 
 With these enhancements, it's now time to work on creating a distributable version of the pilot application.
 
