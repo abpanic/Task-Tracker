@@ -1,6 +1,12 @@
 # PodomoroTimer
 
-This is a simple Pomodoro Timer with sound created using the tkinter library in Python. The timer helps you manage your work by breaking it down into intervals of 25 minutes, separated by short breaks. After completing four such intervals, you can take a longer break.
+## The Need..
+I had to install Ubuntu on my personal machine and spend some time upskilling. I learnt about the [Pomodoro Technique](https://francescocirillo.com/products/the-pomodoro-technique#method). for better time management and realized that there was a need for an app for Ubuntu since none of the apps provided the functionality I wanted.
+
+Hence, the project started of..
+
+## Intro
+This is a simple Pomodoro Timer using the tkinter library with sound created thanks to pygame library in Python. The timer helps you manage your work by breaking it down into intervals of 25 minutes, separated by short breaks. After completing four such intervals, you can take a longer break.
 
 ## Download and Installation
 
