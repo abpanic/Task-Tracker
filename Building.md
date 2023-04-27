@@ -42,10 +42,10 @@ Open your Python script (PodomoroTimer.py) in a text editor and add the followin
 ```
 #!/usr/bin/env python3
 ```
-This line tells the operating system to use Python 3 to run the script.
+This line tells the operating system to use Python 3 to run the script.<br>
 Save and close the file.
 
-2. Make the script executable.
+2. Make the script executable.<br>
 Open a terminal window and navigate to the directory where the script is located. Then, run the following command:
 ```
 chmod +x PodomoroTimer.py
@@ -61,13 +61,13 @@ d. Select "Python 3" and click the "Set as default" button.<br>
 Double click the script: Now you should be able to double-click the PodomoroTimer.py file to run the script.<br>
 
 4. (Optional) Create a desktop shortcut.<br>
-Right-click on your desktop and select "Create a new launcher here" or "Create Launcher" (the wording may differ depending on your Ubuntu version).
-In the "Create Launcher" window, fill in the details:
-a. Type: Select "Application" from the dropdown menu.
-b. Name: Enter a name for the shortcut, such as "Podomoro Timer".
-c. Command: Click the "Browse" button and navigate to the location of your PodomoroTimer.py file. Select the file and click "Open".
-d. (Optional) Icon: Click the icon placeholder to choose an icon for the shortcut.
-Click "OK" or "Create" to create the desktop shortcut.
+Right-click on your desktop and select "Create a new launcher here" or "Create Launcher" (the wording may differ depending on your Ubuntu version).<br>
+In the "Create Launcher" window, fill in the details:<br>
+a. Type: Select "Application" from the dropdown menu.<br>
+b. Name: Enter a name for the shortcut, such as "Podomoro Timer".<br>
+c. Command: Click the "Browse" button and navigate to the location of your PodomoroTimer.py file. Select the file and click "Open".<br>
+d. (Optional) Icon: Click the icon placeholder to choose an icon for the shortcut.<br>
+Click "OK" or "Create" to create the desktop shortcut.<br>
 
 With these enhancements, it's now time to work on creating a distributable version of the pilot application.
 
