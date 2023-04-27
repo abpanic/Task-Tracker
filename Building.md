@@ -46,9 +46,7 @@ app = PomodoroTimer(root)
 root.mainloop()
 
 ```
-The starter code is just the scaffolding of the application, and it's okay not to have all the components functional in the first go. However, running the starter code in VSCode should launch the app, as we kick off and that's precisely what happened.
-
-![screenshot 1]
+The starter code is just the scaffolding of the application, and it's okay not to have all the components functionally coded in the first go. However, running the starter code in VSCode should launch the app, as we kick off and it should launch fine as it did.
 
 Next, I added the rest of the code components to ensure the application is functional and performs the tasks it's supposed to. As you can see the start, pause and stop timer function was missing so was the timer and state of the app. We also added countdown and timer label
 
@@ -109,7 +107,41 @@ To implement these features, I made the following changes:
 
 I used the `pygame` library to add the alarm sound feature:
 
-[Added code]
+```
+import tkinter as tk
+import pygame
+
+class PomodoroTimer:
+    def __init__(self, master):
+        ...//code here remains the same	
+
+        pygame.mixer.init()
+
+    def countdown(self):
+        if self.seconds_left > 0 and self.is_running:
+           ...//code here remains the same	
+            self.master.after(1000, self.countdown)  # Call this method again after 1000 ms (1 second)
+        elif self.is_running:
+            self.play_alarm()
+
+    ...//code here remains the same	
+
+    def stop_timer(self):
+        if self.is_running or self.seconds_left != 25 * 60:
+            ...//code here remains the same	
+            self.pause_button.config(state="disabled")
+            self.stop_button.config(state="disabled")
+
+    def play_alarm(self):
+        pygame.mixer.music.load("alarm_sound.wav")  # Replace "alarm_sound.wav" with the path to your sound file
+        pygame.mixer.music.play()
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = PomodoroTimer(root)
+    root.mainloop()
+
+```
 
 ### Making the Application Executable with Double Click on Ubuntu
 
