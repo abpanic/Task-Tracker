@@ -48,12 +48,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 # Step-by-step build guide:
 
 The Guide to creation of this entire project is [here](https://abpanic.github.io/PodomoroTimer/Building)
-
-Created an initial file for the project with the code: https://gist.github.com/abpanic/63b183c40ac29d95231a6d8babdeb64b
-
-Working file on the initial scaffolding: https://gist.github.com/abpanic/9dd14bc85105d2320a10e4dd947c516e
-
-Final file after adding alarm sound: https://gist.github.com/abpanic/e2964def37527f13ac36de5c23dbaf52
-
-https://gist.github.com/abpanic/7b1e5557b06e7245e05237fd04462d34
-
