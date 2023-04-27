@@ -225,7 +225,7 @@ Pre-Depends: dpkg (>= 1.16.1), python3
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${python3:Depends}
 Description: Short description of your package
  Long description of your package.
- ```
+```
  
 5. Create a `debian/rules` file.
 In the your_package_name/debian directory, create a new file called rules. Add the following content to the file:
