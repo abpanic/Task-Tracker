@@ -53,7 +53,7 @@ chmod +x PodomoroTimer.py
 This command grants the script executable permissions.
 
 3. Associate the script with the Python interpreter.
-To make sure your script opens with Python when double-clicked, you need to associate .py files with the Python interpreter. To do this, follow these steps:
+To make sure your script opens with Python when double-clicked, you need to associate .py files with the Python interpreter. To do this, follow these steps:<br>
 a. Right-click on the PodomoroTimer.py file and select "Properties" from the context menu.
 b. In the "Properties" window, navigate to the "Open With" tab.
 c. Find the "Python 3" interpreter in the list of applications. If you don't see it, click "Show other applications" and find it in the extended list.
