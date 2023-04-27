@@ -58,6 +58,8 @@ python3 main.py
 Share your built application with others, either by providing the standalone executable or by uploading the .deb package to your GitHub Releases page.
 For more information on how to use the Pomodoro Timer, please refer to the [step-by-step guide](https://abpanic.github.io/PodomoroTimer/).
 
+## The Build Process
+
 Onto VS Code.
 
 Starting new file with the filename "PodomoroTimer.py" with an initial scaffolding on what the item is supposed to contain.
@@ -140,15 +142,15 @@ Now you should be able to run your Python script by double-clicking the desktop 
 
 With these steps it is now time to go to working on making a distributable of the pilot version:
 
-o convert your Python script into a Debian package (.deb file), follow these steps:
+## To convert Python script into a Debian package (.deb file), steps were :
 
-Install required tools:
+### Install required tools:
 
 Open a terminal and run the following commands to install the necessary tools:
 
 ```
 sudo apt update
-sudo apt install dh-virtualenv devscripts debhelper
+sudo apt install dh-python devscripts debhelper
 ```
 Create a directory structure for your package:
 
@@ -161,7 +163,7 @@ mkdir -p your_package_name/debian
 ```
 Then, move your Python script (PodomoroTimer.py) to the your_package_name/usr/src/your_package_name directory.
 
-Create a script to run your application:
+### Create a script to run your application:
 
 In the your_package_name/usr/bin directory, create a new file called your_package_name (without any file extension). In this file, add the following content:
 
@@ -174,7 +176,7 @@ Save the file and make it executable by running:
 ```
 chmod +x your_package_name/usr/bin/your_package_name
 ```
-Create a debian/control file:
+### Create a debian/control file:
 
 In the your_package_name/debian directory, create a new file called control. Add the following content to the file, replacing the placeholder text with your package details:
 
@@ -183,7 +185,7 @@ Source: your_package_name
 Section: utils
 Priority: optional
 Maintainer: Your Name <your.email@example.com>
-Build-Depends: debhelper (>=9), dh-virtualenv
+Build-Depends: debhelper (>=9), dh-python, python3
 Standards-Version: 3.9.8
 
 Package: your_package_name
@@ -193,7 +195,7 @@ Depends: ${shlibs:Depends}, ${misc:Depends}, ${python3:Depends}
 Description: Short description of your package
  Long description of your package.
  ```
-Create a debian/rules file:
+### Create a debian/rules file:
 
 In the your_package_name/debian directory, create a new file called rules. Add the following content to the file:
 
@@ -203,14 +205,14 @@ In the your_package_name/debian directory, create a new file called rules. Add t
 
 %:
 	dh $@ --with python3 --buildsystem=pybuild
-	```
+```
 Save the file and make it executable by running:
 
 ```
 
 chmod +x your_package_name/debian/rules
 ```
-Create a debian/changelog file:
+### Create a debian/changelog file:
 
 In the your_package_name/debian directory, create a new file called changelog. Add the following content to the file, replacing the placeholder text with your package details:
 
@@ -223,7 +225,7 @@ your_package_name (1.0-1) unstable; urgency=low
  ```
 Replace <current_date> with the current date in the format Mon, DD MMM YYYY HH:MM:SS +ZZZZ.
 
-Build the Debian package:
+### Build the Debian package:
 
 Navigate to the root of your your_package_name directory in the terminal and run the following command:
 
