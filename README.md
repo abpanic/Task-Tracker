@@ -14,7 +14,7 @@ Follow these steps to download and install the Pomodoro Timer for Ubuntu:
 
 1. Go to the [Releases](https://github.com/abpanic/PomodoroTimer/releases) page of the Pomodoro Timer repository.
 
-2. Download the latest release's `.deb` file, which should be named something like `pomodoro-timer-X.Y.Z.deb`, where `X.Y.Z` is the version number.
+2. Download the latest release's `.deb` file, which should be named something like `pomodorotimer-X.Y.Z.deb`, where `X.Y.Z` is the version number.
 
 3. Open a terminal and navigate to the folder where you downloaded the `.deb` file.
 
@@ -26,7 +26,7 @@ Follow these steps to download and install the Pomodoro Timer for Ubuntu:
 Install the Pomodoro Timer using the following command (replace X.Y.Z with the actual version number):
 
 ```bash
-sudo apt install ./pomodoro-timer-ubuntu-X.Y.Z.deb
+sudo apt install ./pomodorotimer-ubuntu-X.Y.Z.deb
 ```
 Once the installation is complete, you can launch the Pomodoro Timer from your application menu or by running pomodoro-timer in the terminal.
 
@@ -38,13 +38,13 @@ The timer will start automatically and you can customize the intervals and sound
 
 ## Contributing
 
-If you find any issues or have suggestions for improvement, please feel free to submit a pull request or create an issue in this repository.
+If you find any issues or have suggestions for improvement, please feel free to submit a pull request or create an issue in this repository. Created by [Abhilash](https://dbugr.vercel.app/)
+
+
+## Step-by-step build guide:
+
+The Guide to creation of this entire project is [here](https://abpanic.github.io/PomodoroTimer/Building)
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
-# Step-by-step build guide:
-
-The Guide to creation of this entire project is [here](https://abpanic.github.io/PomodoroTimer/Building)
