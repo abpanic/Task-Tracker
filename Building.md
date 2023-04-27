@@ -1,4 +1,4 @@
-In this blog post, I'll be discussing the build process of a custom Pomodoro Timer created for my use case. This project also showcases my product management skills. Let's dive into the details.
+In this blog post, I'll be discussing the build process of a custom Pomodoro Timer created for my use case. Let's dive into the details.
 
 ## The Build Process
 
