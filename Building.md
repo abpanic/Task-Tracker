@@ -37,7 +37,7 @@ I used the `pygame` library to add the alarm sound feature:
 
 To make the Python script executable with a double click on Ubuntu, I followed these steps:
 
-1. Add a shebang line to the script.
+1. Add a shebang line to the script.<br>
 Open your Python script (PodomoroTimer.py) in a text editor and add the following line to the very top of the file:
 ```
 #!/usr/bin/env python3
@@ -52,15 +52,15 @@ chmod +x PodomoroTimer.py
 ```
 This command grants the script executable permissions.
 
-3. Associate the script with the Python interpreter.
+3. Associate the script with the Python interpreter.<br>
 To make sure your script opens with Python when double-clicked, you need to associate .py files with the Python interpreter. To do this, follow these steps:<br>
-a. Right-click on the PodomoroTimer.py file and select "Properties" from the context menu.
-b. In the "Properties" window, navigate to the "Open With" tab.
-c. Find the "Python 3" interpreter in the list of applications. If you don't see it, click "Show other applications" and find it in the extended list.
-d. Select "Python 3" and click the "Set as default" button.
-Double click the script: Now you should be able to double-click the PodomoroTimer.py file to run the script.
+a. Right-click on the PodomoroTimer.py file and select "Properties" from the context menu.<br>
+b. In the "Properties" window, navigate to the "Open With" tab.<br>
+c. Find the "Python 3" interpreter in the list of applications. If you don't see it, click "Show other applications" and find it in the extended list.<br>
+d. Select "Python 3" and click the "Set as default" button.<br>
+Double click the script: Now you should be able to double-click the PodomoroTimer.py file to run the script.<br>
 
-4. (Optional) Create a desktop shortcut.
+4. (Optional) Create a desktop shortcut.<br>
 Right-click on your desktop and select "Create a new launcher here" or "Create Launcher" (the wording may differ depending on your Ubuntu version).
 In the "Create Launcher" window, fill in the details:
 a. Type: Select "Application" from the dropdown menu.
