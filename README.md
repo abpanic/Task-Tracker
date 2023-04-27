@@ -1,4 +1,4 @@
-# PomodoroTimer
+# PomodoroTimer for Ubuntu 
 
 ## The Need..
 I had to install Ubuntu on my personal machine and spend some time upskilling. I learnt about the [Pomodoro Technique](https://francescocirillo.com/products/the-pomodoro-technique#method). for better time management and realized that there was a need for an app for Ubuntu since none of the apps provided the functionality I wanted.
