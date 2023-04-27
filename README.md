@@ -2,16 +2,27 @@
 
 This is a simple Pomodoro Timer with sound created using the tkinter library in Python. The timer helps you manage your work by breaking it down into intervals of 25 minutes, separated by short breaks. After completing four such intervals, you can take a longer break.
 
-## Download
-You can download the file from here(https://github.com/abpanic/PodomoroTimer/releases)
+## Download and Installation
 
-## Installation
+Follow these steps to download and install the Pomodoro Timer for Ubuntu:
 
-To install the Podomoro Timer on Ubuntu, download the `podomoro-timer.deb` file from the releases section of this repository. Then, open a terminal and run the following command:
+1. Go to the [Releases](https://github.com/abpanic/PodomoroTimer/releases) page of the Pomodoro Timer repository.
 
+2. Download the latest release's `.deb` file, which should be named something like `pomodoro-timer-X.Y.Z.deb`, where `X.Y.Z` is the version number.
+
+3. Open a terminal and navigate to the folder where you downloaded the `.deb` file.
+
+   For example, if you downloaded the file to your `Downloads` folder, you would run:
+
+   ```bash
+   cd ~/Downloads
+   ```
+Install the Pomodoro Timer using the following command (replace X.Y.Z with the actual version number):
+
+```bash
+sudo apt install ./pomodoro-timer-ubuntu-X.Y.Z.deb
 ```
-sudo apt install ./podomoro-timer.deb
-```
+Once the installation is complete, you can launch the Pomodoro Timer from your application menu or by running pomodoro-timer in the terminal.
 
 ## Usage
 
