@@ -204,7 +204,7 @@ In the your_package_name/debian directory, create a new file called rules. Add t
 #!/usr/bin/make -f
 
 %:
-	dh $@ --with python3 --buildsystem=pybuild
+	dh $@ --with python3 --buildsystem=pybuild --system=setuptools
 ```
 Save the file and make it executable by running:
 
@@ -224,6 +224,33 @@ your_package_name (1.0-1) unstable; urgency=low
  -- Your Name <your.email@example.com>  <current_date>
  ```
 Replace <current_date> with the current date in the format Mon, DD MMM YYYY HH:MM:SS +ZZZZ.
+
+### Setup.py to for the build system
+Make sure that you have a setup.py file in the root directory of your project. If you don't have one, create a setup.py file with the following content:
+
+```
+from setuptools import setup, find_packages
+
+setup(
+    name="podomorotimer",
+    version="1.0",
+    packages=find_packages(),
+    entry_points={
+        'console_scripts': [
+            'podomorotimer=podomorotimer:main',
+        ],
+    },
+)
+```
+Replace podomorotimer:main with the appropriate module and function name for your application entry point.
+
+###  Create a debian/compat file:
+Creating  create a new file called compat in the debian directory with the following content:
+
+```
+10
+```
+This sets the compatibility level to 10, which should work with the tools you are using.
 
 ### Build the Debian package:
 
