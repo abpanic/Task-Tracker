@@ -46,7 +46,7 @@ pip3 install pyinstaller
 pyinstaller --onefile main.py
 ```
 ### Option B: Create a .deb package
-Follow a guide to create a .deb package from your Python application, such as this tutorial.
+Follow a guide to create a .deb package from your Python application, such as this tutorial(https://www.electronjs.org/docs/latest/tutorial/application-distribution#creating-packages).
 
 ## Step 5: Test the Application
 Run the application to ensure it works correctly:
@@ -56,3 +56,4 @@ python3 main.py
 ```
 ## Step 6: Distribute the Application
 Share your built application with others, either by providing the standalone executable or by uploading the .deb package to your GitHub Releases page.
+For more information on how to use the Pomodoro Timer, please refer to the step-by-step guide().
