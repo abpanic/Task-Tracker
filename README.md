@@ -25,3 +25,9 @@ If you find any issues or have suggestions for improvement, please feel free to 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
+# Step-by-step guide to creating this
+
+Created an initial file for the project with the code: https://gist.github.com/abpanic/63b183c40ac29d95231a6d8babdeb64b
+
+https://gist.github.com/abpanic/7b1e5557b06e7245e05237fd04462d34
+
