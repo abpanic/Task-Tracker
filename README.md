@@ -1,4 +1,4 @@
-# PodomoroTimer
+# PomodoroTimer
 
 ## The Need..
 I had to install Ubuntu on my personal machine and spend some time upskilling. I learnt about the [Pomodoro Technique](https://francescocirillo.com/products/the-pomodoro-technique#method). for better time management and realized that there was a need for an app for Ubuntu since none of the apps provided the functionality I wanted.
@@ -12,7 +12,7 @@ This is a simple Pomodoro Timer using the tkinter library with sound created tha
 
 Follow these steps to download and install the Pomodoro Timer for Ubuntu:
 
-1. Go to the [Releases](https://github.com/abpanic/PodomoroTimer/releases) page of the Pomodoro Timer repository.
+1. Go to the [Releases](https://github.com/abpanic/PomodoroTimer/releases) page of the Pomodoro Timer repository.
 
 2. Download the latest release's `.deb` file, which should be named something like `pomodoro-timer-X.Y.Z.deb`, where `X.Y.Z` is the version number.
 
@@ -32,7 +32,7 @@ Once the installation is complete, you can launch the Pomodoro Timer from your a
 
 ## Usage
 
-Once installed, you can launch the Podomoro Timer from the Applications menu or by running the `podomoro-timer` command in a terminal. 
+Once installed, you can launch the Pomodoro Timer from the Applications menu or by running the `Pomodoro-timer` command in a terminal. 
 
 The timer will start automatically and you can customize the intervals and sounds in the settings. 
 
@@ -47,4 +47,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 # Step-by-step build guide:
 
-The Guide to creation of this entire project is [here](https://abpanic.github.io/PodomoroTimer/Building)
+The Guide to creation of this entire project is [here](https://abpanic.github.io/PomodoroTimer/Building)

@@ -148,7 +148,7 @@ if __name__ == "__main__":
 To make the Python script executable with a double click on Ubuntu, I followed these steps:
 
 1. Add a shebang line to the script.<br>
-Open your Python script (PodomoroTimer.py) in a text editor and add the following line to the very top of the file:
+Open your Python script (PomodoroTimer.py) in a text editor and add the following line to the very top of the file:
 ```
 #!/usr/bin/env python3
 ```
@@ -158,24 +158,24 @@ Save and close the file.
 2. Make the script executable.<br>
 Open a terminal window and navigate to the directory where the script is located. Then, run the following command:
 ```
-chmod +x PodomoroTimer.py
+chmod +x PomodoroTimer.py
 ```
 This command grants the script executable permissions.
 
 3. Associate the script with the Python interpreter.<br>
 To make sure your script opens with Python when double-clicked, you need to associate .py files with the Python interpreter. To do this, follow these steps:<br>
-a. Right-click on the PodomoroTimer.py file and select "Properties" from the context menu.<br>
+a. Right-click on the PomodoroTimer.py file and select "Properties" from the context menu.<br>
 b. In the "Properties" window, navigate to the "Open With" tab.<br>
 c. Find the "Python 3" interpreter in the list of applications. If you don't see it, click "Show other applications" and find it in the extended list.<br>
 d. Select "Python 3" and click the "Set as default" button.<br>
-Double click the script: Now you should be able to double-click the PodomoroTimer.py file to run the script.<br>
+Double click the script: Now you should be able to double-click the PomodoroTimer.py file to run the script.<br>
 
 4. (Optional) Create a desktop shortcut.<br>
 Right-click on your desktop and select "Create a new launcher here" or "Create Launcher" (the wording may differ depending on your Ubuntu version).<br>
 In the "Create Launcher" window, fill in the details:<br>
 a. Type: Select "Application" from the dropdown menu.<br>
-b. Name: Enter a name for the shortcut, such as "Podomoro Timer".<br>
-c. Command: Click the "Browse" button and navigate to the location of your PodomoroTimer.py file. Select the file and click "Open".<br>
+b. Name: Enter a name for the shortcut, such as "Pomodoro Timer".<br>
+c. Command: Click the "Browse" button and navigate to the location of your PomodoroTimer.py file. Select the file and click "Open".<br>
 d. (Optional) Icon: Click the icon placeholder to choose an icon for the shortcut.<br>
 Click "OK" or "Create" to create the desktop shortcut.<br>
 
@@ -196,13 +196,13 @@ mkdir -p your_package_name/usr/src/your_package_name
 mkdir -p your_package_name/usr/bin
 mkdir -p your_package_name/debian
 ```
-Then, move your Python script (PodomoroTimer.py) to the your_package_name/usr/src/your_package_name directory.
+Then, move your Python script (PomodoroTimer.py) to the your_package_name/usr/src/your_package_name directory.
 
 3. Create a script to run the application.
 In the your_package_name/usr/bin directory, create a new file called your_package_name (without any file extension). In this file, add the following content:
 ```
 #!/bin/sh
-/usr/bin/python3 /usr/src/your_package_name/PodomoroTimer.py
+/usr/bin/python3 /usr/src/your_package_name/PomodoroTimer.py
 ```
 Save the file and make it executable by running:
 ```
@@ -257,17 +257,17 @@ Create a setup.py file in the root directory of your project with the following 
 from setuptools import setup, find_packages
 
 setup(
-    name="podomorotimer",
+    name="Pomodorotimer",
     version="1.0",
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'podomorotimer=podomorotimer:main',
+            'Pomodorotimer=Pomodorotimer:main',
         ],
     },
 )
 ```
-Replace podomorotimer:main with the appropriate module and function name for your application entry point.
+Replace Pomodorotimer:main with the appropriate module and function name for your application entry point.
 
 8. Create a `debian/compat` file.
 Creating create a new file called compat in the debian directory with the following content:
