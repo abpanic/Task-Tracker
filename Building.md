@@ -56,4 +56,4 @@ python3 main.py
 ```
 ## Step 6: Distribute the Application
 Share your built application with others, either by providing the standalone executable or by uploading the .deb package to your GitHub Releases page.
-For more information on how to use the Pomodoro Timer, please refer to the step-by-step guide().
+For more information on how to use the Pomodoro Timer, please refer to the step-by-step guide(./readme.md).
