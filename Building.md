@@ -46,7 +46,7 @@ To convert the Python script into a Debian package (.deb file), I followed these
 Install required tools.
 Create a directory structure for the package.
 Create a script to run the application.
-Create a debian/control file.
+Create a `debian/control` file.
 Create a debian/rules file.
 Create a debian/changelog file.
 Ensure the presence of a setup.py file.
