@@ -74,15 +74,103 @@ With these enhancements, it's now time to work on creating a distributable versi
 To convert the Python script into a Debian package (.deb file), I followed these steps:
 
 1. Install required tools.
+Open a terminal and run the following commands to install the necessary tools:
+```
+sudo apt update
+sudo apt install dh-python devscripts debhelper
+```
 2. Create a directory structure for the package.
-3. Create a script to run the application.
-4. Create a `debian/control` file.
-5. Create a `debian/rules` file.
-6. Create a `debian/changelog` file.
-7. Ensure the presence of a `setup.py` file.
-8. Create a `debian/compat` file.
-9. Build the Debian package.
+Replace your_package_name with a name for your package, and run the following commands:
+```
+mkdir -p your_package_name/usr/src/your_package_name
+mkdir -p your_package_name/usr/bin
+mkdir -p your_package_name/debian
+```
+Then, move your Python script (PodomoroTimer.py) to the your_package_name/usr/src/your_package_name directory.
 
-(You can refer to the detailed steps provided in the original content)
+3. Create a script to run the application.
+In the your_package_name/usr/bin directory, create a new file called your_package_name (without any file extension). In this file, add the following content:
+```
+#!/bin/sh
+/usr/bin/python3 /usr/src/your_package_name/PodomoroTimer.py
+```
+Save the file and make it executable by running:
+```
+chmod +x your_package_name/usr/bin/your_package_name
+```
+
+4. Create a `debian/control` file.
+In the your_package_name/debian directory, create a new file called control. Add the following content to the file, replacing the placeholder text with your package details:
+```
+Source: your_package_name
+Section: utils
+Priority: optional
+Maintainer: Your Name <your.email@example.com>
+Build-Depends: debhelper (>=9), dh-python, python3
+Standards-Version: 3.9.8
+
+Package: your_package_name
+Architecture: all
+Pre-Depends: dpkg (>= 1.16.1), python3
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python3:Depends}
+Description: Short description of your package
+ Long description of your package.
+ ```
+ 
+5. Create a `debian/rules` file.
+In the your_package_name/debian directory, create a new file called rules. Add the following content to the file:
+```
+#!/usr/bin/make -f
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild --system=setuptools
+```
+Save the file and make it executable by running:
+```
+chmod +x your_package_name/debian/rules
+```
+
+6. Create a `debian/changelog` file.
+Add the following content to the file, replacing the placeholder text with your package details:
+```
+your_package_name (1.0-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Your Name <your.email@example.com>  <current_date>
+```
+Replace <current_date> with the current date in the format Mon, DD MMM YYYY HH:MM:SS +ZZZZ.
+
+7. Create `setup.py` file.
+Create a setup.py file in the root directory of your project with the following content:
+```
+from setuptools import setup, find_packages
+
+setup(
+    name="podomorotimer",
+    version="1.0",
+    packages=find_packages(),
+    entry_points={
+        'console_scripts': [
+            'podomorotimer=podomorotimer:main',
+        ],
+    },
+)
+```
+Replace podomorotimer:main with the appropriate module and function name for your application entry point.
+
+8. Create a `debian/compat` file.
+Creating create a new file called compat in the debian directory with the following content:
+```
+10
+```
+This sets the compatibility level to 10, which should work with the tools you are using.
+
+9. Build the Debian package.
+Navigate to the root of your your_package_name directory in the terminal and run the following command:
+```
+dpkg-buildpackage -us -uc
+```
+If the build is successful, a .deb file will be generated in the parent directory of your your_package_name folder.
 
 Now, I have a .deb file that I can distribute and install on Debian-based systems using the `dpkg -i your_package_name.deb` command.
