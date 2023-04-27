@@ -1,6 +1,6 @@
 # Building the Pomodoro Timer for Ubuntu
 
-This step-by-step guide will walk you through building the Pomodoro Timer application for Ubuntu.
+This step-by-step guide will walk you through the step-by-step building process I went through for the Pomodoro Timer application for Ubuntu.
 
 ## Prerequisites
 
@@ -57,3 +57,179 @@ python3 main.py
 ## Step 6: Distribute the Application
 Share your built application with others, either by providing the standalone executable or by uploading the .deb package to your GitHub Releases page.
 For more information on how to use the Pomodoro Timer, please refer to the [step-by-step guide](https://abpanic.github.io/PodomoroTimer/).
+
+Onto VS Code.
+
+Starting new file with the filename "PodomoroTimer.py" with an initial scaffolding on what the item is supposed to contain.
+The initial code look like the below:
+
+The initial code is just the scaffolding of the application is okay, not to have all the components functional in first go.
+But the initial run in VSCode should show us the app launched and this was certainly the case.
+
+[screenshot 1]
+
+Now adding the rest of the code components to ensure it is functional and does what application is supposed to.
+
+hence added the below:
+
+[added code..]
+
+Now the application is coming up nicely and we can run it from terminal with "python3 PodomoroTimer.py"
+
+The application launches and the timer can continue. But an Minimum Viable Product should have the features that goes beyond being the bare functions. It should have the functionalities in the initial phase that make users want to use it more.
+
+So on to the part that would make is different from others available in Ubuntu snap(Ubuntu marketplace for apps) 
+A->It should have an alarm sound that the user can hear allowing the user to reset.
+B->Make it executable with double click on Ubuntu
+
+A->
+This can be done with pygame library and hence:
+
+[added code..]
+
+B->
+To make your Python script executable with a double click on Ubuntu:
+To make your Python script executable with a double click on Ubuntu, you need to follow these steps:
+
+Add a shebang line: Open your Python script (PodomoroTimer.py) in a text editor and add the following line to the very top of the file:
+
+```
+#!/usr/bin/env python3
+```
+This line tells the operating system to use Python 3 to run the script.
+
+Save and close the file.
+
+Make the script executable: Open a terminal window and navigate to the directory where the script is located. Then, run the following command:
+
+```
+chmod +x PodomoroTimer.py
+```
+This command grants the script executable permissions.
+
+Associate the script with Python: To make sure your script opens with Python when double-clicked, you need to associate .py files with the Python interpreter. To do this, follow these steps:
+
+a. Right-click on the PodomoroTimer.py file and select "Properties" from the context menu.
+
+b. In the "Properties" window, navigate to the "Open With" tab.
+
+c. Find the "Python 3" interpreter in the list of applications. If you don't see it, click "Show other applications" and find it in the extended list.
+
+d. Select "Python 3" and click the "Set as default" button.
+
+Double click the script: Now you should be able to double-click the PodomoroTimer.py file to run the script.
+
+If you want to create a desktop shortcut for your script, follow these additional steps:
+
+Right-click on your desktop and select "Create a new launcher here" or "Create Launcher" (the wording may differ depending on your Ubuntu version).
+
+In the "Create Launcher" window, fill in the details:
+
+a. Type: Select "Application" from the dropdown menu.
+
+b. Name: Enter a name for the shortcut, such as "Podomoro Timer".
+
+c. Command: Click the "Browse" button and navigate to the location of your PodomoroTimer.py file. Select the file and click "Open".
+
+d. (Optional) Icon: Click the icon placeholder to choose an icon for the shortcut.
+
+Click "OK" or "Create" to create the desktop shortcut.
+
+Now you should be able to run your Python script by double-clicking the desktop shortcut or the script file itself.
+
+
+With these steps it is now time to go to working on making a distributable of the pilot version:
+
+o convert your Python script into a Debian package (.deb file), follow these steps:
+
+Install required tools:
+
+Open a terminal and run the following commands to install the necessary tools:
+
+```
+sudo apt update
+sudo apt install dh-virtualenv devscripts debhelper
+```
+Create a directory structure for your package:
+
+Replace your_package_name with a name for your package, and run the following commands:
+
+```
+mkdir -p your_package_name/usr/src/your_package_name
+mkdir -p your_package_name/usr/bin
+mkdir -p your_package_name/debian
+```
+Then, move your Python script (PodomoroTimer.py) to the your_package_name/usr/src/your_package_name directory.
+
+Create a script to run your application:
+
+In the your_package_name/usr/bin directory, create a new file called your_package_name (without any file extension). In this file, add the following content:
+
+```
+#!/bin/sh
+/usr/bin/python3 /usr/src/your_package_name/PodomoroTimer.py
+```
+Save the file and make it executable by running:
+
+```
+chmod +x your_package_name/usr/bin/your_package_name
+```
+Create a debian/control file:
+
+In the your_package_name/debian directory, create a new file called control. Add the following content to the file, replacing the placeholder text with your package details:
+
+```
+Source: your_package_name
+Section: utils
+Priority: optional
+Maintainer: Your Name <your.email@example.com>
+Build-Depends: debhelper (>=9), dh-virtualenv
+Standards-Version: 3.9.8
+
+Package: your_package_name
+Architecture: all
+Pre-Depends: dpkg (>= 1.16.1), python3
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python3:Depends}
+Description: Short description of your package
+ Long description of your package.
+ ```
+Create a debian/rules file:
+
+In the your_package_name/debian directory, create a new file called rules. Add the following content to the file:
+
+```
+
+#!/usr/bin/make -f
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+	```
+Save the file and make it executable by running:
+
+```
+
+chmod +x your_package_name/debian/rules
+```
+Create a debian/changelog file:
+
+In the your_package_name/debian directory, create a new file called changelog. Add the following content to the file, replacing the placeholder text with your package details:
+
+```
+your_package_name (1.0-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Your Name <your.email@example.com>  <current_date>
+ ```
+Replace <current_date> with the current date in the format Mon, DD MMM YYYY HH:MM:SS +ZZZZ.
+
+Build the Debian package:
+
+Navigate to the root of your your_package_name directory in the terminal and run the following command:
+
+```
+dpkg-buildpackage -us -uc
+```
+If the build is successful, a .deb file will be generated in the parent directory of your your_package_name folder.
+
+Now you have a .deb file that you can distribute and install on Debian-based systems using the dpkg -i your_package_name.deb command.
