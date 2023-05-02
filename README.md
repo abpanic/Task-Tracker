@@ -1,44 +1,53 @@
-# PomodoroTimer 
+# Task Tracker
 
-Uses:
-PyQT5
-SQLLite3
+Task Tracker is a productivity application that helps you work efficiently by managing your tasks in a timebound manner. It is built using Python and PyQt5, and uses SQLite to store and manage your tasks.
 
-## The Need..
-I had to install Ubuntu on my personal machine and spend some time upskilling. I learnt about the [Pomodoro Technique](https://francescocirillo.com/products/the-pomodoro-technique#method). for better time management and realized that there was a need for an app for Ubuntu since none of the apps provided the functionality I wanted.
+(./TaskTracker.png)
+[Task Tracker]
+## Features
 
-Hence, the project started of..
+- Set work and break duration
+- Add and remove tasks
+- Save and load tasks to a database
+- Desktop notifications
 
-## Intro
-This is a simple Pomodoro Timer using the tkinter library with sound created thanks to pygame library in Python. The timer helps you manage your work by breaking it down into intervals of 25 minutes, separated by short breaks. After completing four such intervals, you can take a longer break.
+## Installation
 
-## Download and Installation
+### Prerequisites
 
-Follow these steps to download and install the Pomodoro Timer for Ubuntu:
+- Python 3.6 or higher
+- PyQt5
+- SQLite3
 
-1. Go to the [Releases](https://github.com/abpanic/PomodoroTimer/releases) page of the Pomodoro Timer repository.
+### Clone the repository
 
-2. Download the latest release's `.deb` file, which should be named something like `pomodorotimer-X.Y.Z.deb`, where `X.Y.Z` is the version number.
-
-3. Open a terminal and navigate to the folder where you downloaded the `.deb` file.
-
-   For example, if you downloaded the file to your `Downloads` folder, you would run:
-
-   ```bash
-   cd ~/Downloads
-   ```
-Install the Pomodoro Timer using the following command (replace X.Y.Z with the actual version number):
-
-```bash
-sudo apt install ./pomodorotimer-ubuntu-X.Y.Z.deb
 ```
-Once the installation is complete, you can launch the Pomodoro Timer from your application menu or by running pomodoro-timer in the terminal.
+$ git clone https://github.com/abpanic/pomodoro-timer.git
+$ cd pomodoro-timer
+```
+
+### Install dependencies
+
+```
+$ pip install -r requirements.txt
+```
+
+### Run the application
+
+```
+$ python pomodoro_timer.py
+```
 
 ## Usage
 
-Once installed, you can launch the Pomodoro Timer from the Applications menu or by running the `Pomodoro-timer` command in a terminal. 
-
-The timer will start automatically and you can customize the intervals and sounds in the settings. 
+1. Start the timer by clicking on the "Start" button.
+2. Stop the timer by clicking on the "Stop" button.
+3. Reset the timer by clicking on the "Reset" button.
+4. Set the work and break duration using the spin boxes.
+5. Add and remove tasks using the buttons.
+6. Save and load tasks using the buttons.
+7. Desktop notifications will appear when the timer ends.
+8. Click on the "About" button to learn more about the application.
 
 ## Contributing
 
@@ -52,26 +61,3 @@ The Guide to creation of this entire project is [here](https://abpanic.github.io
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
-To DO: 
-Project Tracking:
-
-User personas and scenarios: 
-
-Competitive analysis: 
-
-Prioritization and backlog management: 
-
-Roadmap: 
-
-User feedback and analytics: 
-Product iteration and continuous improvement: 
-
-Documentation and user guides: 
-
-Collaboration and communication: 
-
-Risk assessment and mitigation: 
-
-Release management: 
