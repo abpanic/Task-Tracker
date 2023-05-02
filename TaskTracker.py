@@ -1,3 +1,6 @@
+## Task Tracker
+## Created by dbugr (https://dbugr.vercel.app/)
+
 import sys
 from PyQt5.QtCore import QTimer, QTime
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QVBoxLayout, QLabel, QPushButton,
