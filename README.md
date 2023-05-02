@@ -4,6 +4,8 @@ Task Tracker is a productivity application that helps you work efficiently by ma
 
 ![Task Tracker](/TaskTracker)
 
+Star the repo here, to keep track as I add more features: https://github.com/abpanic/Task-Tracker
+
 ## Features
 
 - Set work and break duration
