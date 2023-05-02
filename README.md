@@ -2,8 +2,8 @@
 
 Task Tracker is a productivity application that helps you work efficiently by managing your tasks in a timebound manner. It is built using Python and PyQt5, and uses SQLite to store and manage your tasks.
 
-(./TaskTracker.png)
-[Task Tracker]
+![Task Tracker](./TaskTracker.png)
+
 ## Features
 
 - Set work and break duration
