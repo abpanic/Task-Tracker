@@ -6,69 +6,11 @@ from PyQt5.QtCore import QTimer, QTime
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QVBoxLayout, QLabel, QPushButton,
                              QWidget, QSpinBox, QTextEdit, QGridLayout, QLineEdit, QInputDialog,
                              QMessageBox, QDialog, QAction, QSystemTrayIcon)
-import sqlite3
 from plyer import notification
+from About import AboutDialog
+from TaskManager import TaskManager
 
-class TaskManager:
-    def __init__(self, db_filename="tasks.db"):
-        self.tasks = []
-        self.conn = sqlite3.connect(db_filename)
-        self.cursor = self.conn.cursor()
-        self.cursor.execute("CREATE TABLE IF NOT EXISTS tasks (task TEXT)")
-
-    def add_task(self, task):
-        self.tasks.append(task)
-
-    def remove_task(self, index):
-        if 0 <= index < len(self.tasks):
-            self.tasks.pop(index)
-
-    def list_tasks(self):
-        return self.tasks
-
-    def save_tasks_to_db(self):
-        self.cursor.execute("DELETE FROM tasks")
-        for task in self.tasks:
-            self.cursor.execute("INSERT INTO tasks (task) VALUES (?)", (task,))
-        self.conn.commit()
-
-    def load_tasks_from_db(self):
-        self.tasks = []
-        self.cursor.execute("SELECT task FROM tasks")
-        tasks = self.cursor.fetchall()
-        for task in tasks:
-            self.tasks.append(task[0])
-
-class AboutDialog(QDialog):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-
-        layout = QVBoxLayout()
-
-        app_name = QLabel("Task Tracker")
-        app_name.setStyleSheet("font-size: 18px; font-weight: bold;")
-        layout.addWidget(app_name)
-
-        version = QLabel("Version 1.0")
-        layout.addWidget(version)
-
-        created_label = QLabel('Abhilash')
-        layout.addWidget(created_label)
-
-        url_label = QLabel('<a href="https://dbugr.vercel.app">dbugr.vercel.app</a>')
-        url_label.setOpenExternalLinks(True)
-        layout.addWidget(url_label)
-
-        ok_button = QPushButton("OK")
-        ok_button.clicked.connect(self.accept)
-        layout.addWidget(ok_button)
-
-        self.setLayout(layout)
-        self.setWindowTitle("About Task Tracker")
-
-
-
-class PomodoroTimer(QMainWindow):
+class TaskTracker(QMainWindow):
     def __init__(self):
         super().__init__()
 
@@ -149,7 +91,6 @@ class PomodoroTimer(QMainWindow):
         layout.addWidget(self.task_list, 4, 0, 1, 5)
 
         self.add_task_button = QPushButton("Add Task")
-        self.add_task_button.clicked.connect
         self.add_task_button.clicked.connect(self.add_task)
         layout.addWidget(self.add_task_button, 5, 0)
 
@@ -186,21 +127,17 @@ class PomodoroTimer(QMainWindow):
         self.update_display()
 
     def update_timer(self):
-        if self.running:
-            self.time_remaining -= 1
-            self.update_display()
-
-            if self.time_remaining == 0:
-                self.is_break = not self.is_break
-                self.time_remaining = self.break_time if self.is_break else self.work_time
-                self.show_notification()
+        if self.time_remaining == 0:
+            self.is_break = not self.is_break
+            self.time_remaining = self.break_time if self.is_break else self.work_time
             if self.is_break:
                 title = "Break time!"
                 message = "Time to relax and take a break."
             else:
                 title = "Task Tracker"
                 message = "Time's up! Start your break."
-                self.show_notification(title, message)
+            self.show_notification(title, message)
+
 
     def update_display(self):
         time = QTime(0, 0).addSecs(self.time_remaining)
@@ -220,7 +157,7 @@ class PomodoroTimer(QMainWindow):
 
     def remove_task(self):
         task_index, ok = QInputDialog.getInt(self, "Remove Task", "Enter the task index:")
-        if ok and task_index > 0:
+        if ok and task_index >= 0:
             self.task_manager.remove_task(task_index - 1)
             self.refresh_task_list()
 
@@ -237,17 +174,7 @@ class PomodoroTimer(QMainWindow):
         self.task_list.clear()
         for task in tasks:
             self.task_list.append(f"{task}")
-
-    def show_notification(self):
-        if self.is_break:
-            title = "Break time!"
-            message = "Time to relax and take a break."
-        else:
-            title = "Task Tracker"
-            message = "Time's up! Start your break."
-
-        QMessageBox.information(self, title, message)
-    
+      
     def show_notification(self, title, message):
         icon = QSystemTrayIcon()
         icon.showMessage(title, message, QSystemTrayIcon.Information, 5000)
@@ -259,6 +186,6 @@ class PomodoroTimer(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    pomodoro_timer = PomodoroTimer()
+    task_tracker = TaskTracker()
     sys.exit(app.exec_())
 
