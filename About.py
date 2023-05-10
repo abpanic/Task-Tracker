@@ -1,13 +1,7 @@
 ## Task Tracker
 ## Created by dbugr (https://dbugr.vercel.app/)
 
-from PyQt5.QtCore import QTimer, QTime
-from PyQt5.QtWidgets import (QApplication, QMainWindow, QVBoxLayout, QLabel, QPushButton,
-                             QWidget, QSpinBox, QTextEdit, QGridLayout, QLineEdit, QInputDialog,
-                             QMessageBox, QDialog, QAction, QSystemTrayIcon)
-from plyer import notification
-
-
+from PyQt6.QtWidgets import QVBoxLayout, QLabel, QPushButton, QDialog
 
 class AboutDialog(QDialog):
     def __init__(self, parent=None):

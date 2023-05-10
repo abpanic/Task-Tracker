@@ -2,13 +2,15 @@
 ## Created by dbugr (https://dbugr.vercel.app/)
 
 import sys
-from PyQt5.QtCore import QTimer, QTime
-from PyQt5.QtWidgets import (QApplication, QMainWindow, QVBoxLayout, QLabel, QPushButton,
-                             QWidget, QSpinBox, QTextEdit, QGridLayout, QLineEdit, QInputDialog,
-                             QMessageBox, QDialog, QAction, QSystemTrayIcon)
+from PyQt6.QtCore import QTimer, QTime
+from PyQt6.QtGui import QIcon
+from PyQt6.QtWidgets import (QApplication, QMainWindow, QLabel, QPushButton,
+                             QWidget, QSpinBox, QTextEdit, QGridLayout, QInputDialog,
+                             QMessageBox, QWidgetAction, QSystemTrayIcon, QDialog, QLineEdit, QDialogButtonBox, QVBoxLayout)
 from plyer import notification
 from About import AboutDialog
 from TaskManager import TaskManager
+from TaskManager import Task
 
 class TaskTracker(QMainWindow):
     def __init__(self):
@@ -24,13 +26,11 @@ class TaskTracker(QMainWindow):
         self.initUI()
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_timer)
-        about_action = QAction("About", self)
+        about_action = QWidgetAction(self)
+        about_action.setText("About")
         about_action.triggered.connect(self.show_about_dialog)
         menubar = self.menuBar()
         help_menu = menubar.addMenu("&Help")
-
-        about_action = QAction("About", self)
-        about_action.triggered.connect(self.show_about_dialog)
         help_menu.addAction(about_action)
 
         self.setWindowTitle("Task Tracker")
@@ -38,14 +38,13 @@ class TaskTracker(QMainWindow):
 
     def show_about_dialog(self):
         about_dialog = AboutDialog(self)
-        about_dialog.exec_()
+        about_dialog.exec()
 
     def initUI(self):
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
 
-        layout = QGridLayout()
-        central_widget.setLayout(layout)
+        layout = QGridLayout(central_widget)
 
         self.timer_label = QLabel()
         self.timer_label.setStyleSheet("font-size: 30px;")
@@ -106,8 +105,8 @@ class TaskTracker(QMainWindow):
         self.load_tasks_button.clicked.connect(self.load_tasks_from_db)
         layout.addWidget(self.load_tasks_button, 5, 3)
 
-
         self.setWindowTitle("Task Tracker")
+        self.setWindowIcon(QIcon("icon.png"))
         self.show()
 
     def start_timer(self):
@@ -118,7 +117,7 @@ class TaskTracker(QMainWindow):
     def stop_timer(self):
         self.running = False
         self.timer.stop()
-    
+
     def reset_timer(self):
         self.running = False
         self.timer.stop()
@@ -127,17 +126,19 @@ class TaskTracker(QMainWindow):
         self.update_display()
 
     def update_timer(self):
-        if self.time_remaining == 0:
-            self.is_break = not self.is_break
-            self.time_remaining = self.break_time if self.is_break else self.work_time
-            if self.is_break:
-                title = "Break time!"
-                message = "Time to relax and take a break."
-            else:
-                title = "Task Tracker"
-                message = "Time's up! Start your break."
-            self.show_notification(title, message)
-
+        if self.running:
+            self.time_remaining -= 1
+            if self.time_remaining == 0:
+                self.is_break = not self.is_break
+                self.time_remaining = self.break_time if self.is_break else self.work_time
+                if self.is_break:
+                    title = "Break time!"
+                    message = "Time to relax and take a break."
+                else:
+                    title = "Task Tracker"
+                    message = "Time's up! Start your break."
+                self.show_notification(title, message)
+            self.update_display()
 
     def update_display(self):
         time = QTime(0, 0).addSecs(self.time_remaining)
@@ -150,10 +151,39 @@ class TaskTracker(QMainWindow):
         self.break_time = value * 60
 
     def add_task(self):
-        task, ok = QInputDialog.getText(self, "Add Task", "Enter the task:")
-        if ok and task:
-            self.task_manager.add_task(task)
-            self.refresh_task_list()
+        task_dialog = QDialog(self)
+        task_dialog.setWindowTitle("Add Task")
+        
+        layout = QVBoxLayout()
+        
+        description_label = QLabel("Task Description:")
+        layout.addWidget(description_label)
+        description_input = QLineEdit()
+        layout.addWidget(description_input)
+        
+        duration_label = QLabel("Task Duration (min, max 25):")
+        layout.addWidget(duration_label)
+        duration_input = QSpinBox()
+        duration_input.setRange(1, 25)
+        layout.addWidget(duration_input)
+        
+        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
+        buttons.accepted.connect(task_dialog.accept)
+        buttons.rejected.connect(task_dialog.reject)
+        layout.addWidget(buttons)
+        
+        task_dialog.setLayout(layout)
+        
+        result = task_dialog.exec()
+        if result == QDialog.DialogCode.Accepted:
+            task_description = description_input.text()
+            task_duration = duration_input.value()
+            if task_description:
+                task = Task(task_description, task_duration)
+                self.task_manager.add_task(task)
+                self.refresh_task_list()
+        else:
+            print("This is NOT clause")
 
     def remove_task(self):
         task_index, ok = QInputDialog.getInt(self, "Remove Task", "Enter the task index:")
@@ -167,25 +197,27 @@ class TaskTracker(QMainWindow):
 
     def load_tasks_from_db(self):
         self.task_manager.load_tasks_from_db()
-        self.refresh_task_list()
+        self.refresh_task_list()        
 
     def refresh_task_list(self):
         tasks = self.task_manager.list_tasks()
         self.task_list.clear()
-        for task in tasks:
-            self.task_list.append(f"{task}")
-      
+        for index, (task_description, task_duration) in enumerate(tasks, start=1):
+            task_duration_min = task_duration // 60
+            self.task_list.append(f"{index}. {task_description} ({task_duration_min} min)")
+
     def show_notification(self, title, message):
         icon = QSystemTrayIcon()
-        icon.showMessage(title, message, QSystemTrayIcon.Information, 5000)
-    
+        icon.setIcon(QIcon("icon.png"))
+        icon.showMessage(title, message, QSystemTrayIcon.MessageType.Information, 5000)
+
     def show_about_dialog(self):
         dialog = AboutDialog(self)
-        dialog.exec_()
-
+        dialog.exec()
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    task_tracker = TaskTracker()
-    sys.exit(app.exec_())
+        app = QApplication(sys.argv)
+        task_tracker = TaskTracker()
+        sys.exit(app.exec())
+            
 
