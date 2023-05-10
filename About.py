@@ -13,10 +13,10 @@ class AboutDialog(QDialog):
         app_name.setStyleSheet("font-size: 18px; font-weight: bold;")
         layout.addWidget(app_name)
 
-        version = QLabel("Version 1.0")
+        version = QLabel("Version 2.0")
         layout.addWidget(version)
 
-        author_label = QLabel('Abhilash')
+        author_label = QLabel('Dbugr')
         layout.addWidget(author_label)
 
         website_label = QLabel('<a href="https://dbugr.vercel.app">dbugr.vercel.app</a>')

@@ -182,8 +182,6 @@ class TaskTracker(QMainWindow):
                 task = Task(task_description, task_duration)
                 self.task_manager.add_task(task)
                 self.refresh_task_list()
-        else:
-            print("This is NOT clause")
 
     def remove_task(self):
         task_index, ok = QInputDialog.getInt(self, "Remove Task", "Enter the task index:")
