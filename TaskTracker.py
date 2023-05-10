@@ -177,7 +177,7 @@ class TaskTracker(QMainWindow):
         result = task_dialog.exec()
         if result == QDialog.DialogCode.Accepted:
             task_description = description_input.text()
-            task_duration = duration_input.value()
+            task_duration = duration_input.value()* 60
             if task_description:
                 task = Task(task_description, task_duration)
                 self.task_manager.add_task(task)
